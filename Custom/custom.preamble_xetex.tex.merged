@@ -1,0 +1,493 @@
+
+%------------------------Latex Packages-----------------------------------
+%\documentclass[a4paper,12pt,twoside,xcolor=pdftex,table]{book}
+\documentclass[a4paper,12pt,twoside,xcolor=pstex,table,plainpages=false]{book}%,plainpages=false
+%\documentclass[a4paper,12pt,twoside,table]{book}
+%\documentclass[a4paper,12pt,twoside]{ulect-l}
+\usepackage{threeparttable}
+\usepackage{amsopn,amssymb,ifthen,amsmath}
+%\usepackage{subfigure,epsfig}
+\usepackage{subfigure,epsfig,calc}
+\usepackage{graphics}
+%\usepackage[dvips]{graphics}
+%\usepackage[pdftex]{graphicx}
+\usepackage{makeidx}
+%\usepackage{fancyheadings}
+\usepackage{fancyhdr}
+\usepackage{theorem}
+\usepackage{tabularx}
+\usepackage{mathrsfs}
+\usepackage{psfrag}
+\usepackage{oldgerm}
+\usepackage[boxed]{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{marginnote}
+\usepackage{url}
+\usepackage{color}
+%\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{pstricks,pst-node,pst-text}
+\usepackage{mparhack}
+%\usepackage[plainpages=false]{hyperref}
+
+  
+
+
+%------------------------------------------------------------------------------
+
+%=======================================
+% More Latex Packages I need
+%=======================================
+
+\usepackage{xspace}
+\usepackage{rotating}
+
+%==============================================
+% The following lines are suggested on the IFAC
+% web page in order to use only standard PostScript fonts
+% with type 1 encoding.
+%==============================================
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{Sweave}
+\usepackage{mathpazo}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+ %should add hyperlinks to bibligraphy
+%\usepackage{newalg}
+%\usepackage{listings}
+%GET THIS WORKING TO GET HYPERLINKS TO WORK --- SLOWS DOWN COMPILE A LOT
+%\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5} % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0} % less intense red
+\definecolor{MyDarkBlue}{rgb}{0.1,0,0.35}
+\usepackage[%ps2pdf,
+		backref=page,
+		pdfpagelabels,
+		pagebackref=true,
+		hyperindex=true,
+                bookmarks=true,
+                bookmarksnumbered=false, % true means bookmarks in left window are numbered
+                bookmarksopen=false, % true means only level 1 are displayed.
+                colorlinks=true,
+                plainpages=false,
+                citecolor=MyDarkBlue,
+                linkcolor=MyDarkBlue,
+                xetex]{hyperref}
+%\usepackage[hyperpageref,plainpages=false]{backref} %Page 15 backref manual              
+\defaultfontfeatures{Mapping=tex-text}
+%%%%%%%%%%%%
+%Required by Newcastle UNI
+\onehalfspacing
+\setmainfont{Palatino Linotype}
+%\newfontfamily\sectionfont{Hoefler Text}
+\newfontfamily\sectionfont{Frutiger Linotype}
+%%%%%%%%%%%%
+
+
+%==============================================
+% Some handy definitions
+%==============================================
+
+\newcommand{\eg}        {\emph{e.g.},\xspace}
+\newcommand{\ie}        {\emph{i.e.},\xspace}
+
+\newcommand{\siso}      {\textsc{siso}\xspace}
+\newcommand{\mimo}      {\textsc{mimo}\xspace}
+\newcommand{\sfaw}   {\textsc{sfaw}\xspace}
+\newcommand{\qp}   {\textsc{qp}\xspace}
+\newcommand{\mpc}   {\textsc{mpc}\xspace}
+\newcommand{\dft}   {\textsc{dft}\xspace}
+\newcommand{\svd}   {\textsc{svd}\xspace}
+\newcommand{\cd}   {\textsc{cd}\xspace}
+\newcommand{\rhc}   {\textsc{rhc}\xspace}
+\newcommand{\lqr}   {\textsc{lqr}\xspace}
+
+\newcommand{\alert}   {\red}
+
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\diag}{diag}
+
+%==============================================
+% My definitions for Theorems and the like
+%==============================================
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+%\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{assu}{Assumption}
+\newtheorem{examp}[subsection]{Example}
+\newtheorem{remk}[subsection]{Remark}
+\newtheorem{defn}[thm]{Definition}
+
+\newtheorem{parra}[subsection]{Paraphrase \textcolor{webblue}}
+\def\qed{\hfill{$\Box$}}
+\def\yes{\textsc{yes}\;}
+\def\no{\textsc{no}\;}
+\def\yesh{\textsc{yes}}
+\def\noh{\textsc{no}}
+\def\kcluster{{\sc $k$-Cluster Edit}\;}
+%===========================================
+% Alternative Theorem styles required for other standards
+%===========================================
+\newtheorem{lemma}[thm]{Lemma}
+%================================================
+% Abbreviation and layout definitions
+%================================================
+\newcommand{\cedit}{{\scshape Cluster Editing}\;}
+\newcommand{\ceditc}{{\scshape Cluster Editing}}
+%\newcommand{\cedit}{{\sc Cluster Editing}\;}
+%\newcommand{\ceditc}{{\sc Cluster Editing}}
+\newcommand{\vc}{{\scshape Vertex Cover}\;}
+\newcommand{\vcc}{{\scshape Vertex Cover}}
+%\newcommand{\fpt}{{\scshape FPT}\;}
+\newcommand{\fptc}{{$\mathcal{F\!P\!T}$}\;}
+\newcommand{\fpt}{{$\mathcal{F\!P\!T}$}}
+%\newcommand{\fptc}{{\scshape FPT}}
+%\newcommand{\N}{{\mathbb{N}}\;}
+%\newcommand{\Poly}{{$\mathbb{P}$}\;}
+%\newcommand{\NP}{{$\mathbb{NP}$}\;}
+%\newcommand{\APX}{{$\mathbb{APX}$}\;}
+\newcommand{\N}{{\mathcal{N}}\;}
+\newcommand{\Poly}{{$\mathcal{P}$}\;}
+\newcommand{\NP}{{$\mathcal{N\!P}$}\;}
+\newcommand{\NPO}{{$\mathcal{N\!PO}$}\;}
+\newcommand{\APX}{{$\mathcal{AP\!X}$}\;}
+\newcommand{\NPc}{{$\mathcal{N\!P}$}}
+\newcommand{\APXc}{{$\mathcal{A\kern-0.1em P\kern-0.2em X}$}}
+\newcommand{\PTAS}{{$\mathcal{PTAS}$}}
+\newcommand{\EPTAS}{{$\mathcal{E\!P\!T\!\!AS}$}}
+\newcommand{\FPTAS}{{$\mathcal{F\!P\!T\!\!AS}$}}
+\newcommand{\PTASc}{{$\mathcal{PT\!AS}$}\;}
+\newcommand{\vst}{\vspace{3mm}}
+\newcommand{\hsd}{\hspace{10mm}}
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\aidx}[1]{{\em {#1}} \index{#1}}
+%\newcommand{\N}{\field{N}}
+%\newcommand{\fpt}{{\sc Fpt }\;}
+%\newcommand{\yes}{\textup{\textsf{Yes}\;}}
+%\newcommand{\no}{\textup{\textsf{No}\;}}
+\newcommand{\Oh}{{\mathcal O}}
+\newcommand{\etal}{{\em et al.} \; }
+\newcommand{\etals}{{\em{et al.'s} }}
+%===========
+%latexdiff commands
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF CTRADITIONAL PREAMBLE %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\RequirePackage[stable]{footmisc} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue} \sf #1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red} [..\footnote{removed: #1} ]}} %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%-===========
+\usepackage{ifthen}
+\usepackage{color}
+%\ifthenelse{\isodd{\thepage}}
+%{\flushleft$\bigoplus$}
+%{\flushright$\bigoplus$}
+%}}
+%\renewcommand\marginpar[1]{
+%\marginpar{
+%\ifthenelse{\isodd{\thepage}}
+%{\flushleft\raggedright\footnotesize #1 }
+%{\flushright\raggedleft\footnotesize #1}
+%{\raggedright\footnotesize #1 }
+%{\raggedleft\footnotesize #1}
+%}
+
+%{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+%{\raggedright\footnotesize #1}}
+\newcommand{\comment}[2][int1]
+	{
+%	\marginnote{
+	\marginpar{
+	        %\ifthenelse{\isodd{\thepage}}{\reversemarginpar}{}
+	        \footnotesize\flushleft\setlength{\baselineskip}{7pt}
+	        %{\footnotesize\flushleft\raggedright\setlength{\baselineskip}{7pt}}
+%	        {\footnotesize\flushright\raggedleft\setlength{\baselineskip}{7pt}}	
+		\footnotesize	
+		\ifthenelse{\equal{#1}{pshaw}}
+			{\color{blue}}
+			{}
+		\ifthenelse{\equal{#1}{int2}}
+			{\color{green}}
+			{}
+		\ifthenelse{\equal{#1}{int3}}
+			{\color{blue}}
+			{}
+		\ifthenelse{\equal{#1}{int4}}
+			{\color{cyan}}
+			{}
+		\ifthenelse{\equal{#1}{int5}}
+			{\color{magenta}}
+			{}
+		{\MakeUppercase{#1}: #2}
+		}
+}
+%=================================
+%PSTRICK MACROS
+\newcommand{\SB}[1]{\psshadowbox[linecolor=yellow]{#1}}
+
+%==================================
+% Bibliography definition
+%==================================
+
+%\bibliographystyle{ifac}
+%\usepackage[dcucite]{harvard} BRAKES CITATIONS IF USED
+
+%==============================================
+% Defining the path for figures
+% (This is handy when figures are in different
+% directories)
+%==============================================
+
+%\graphicspath{{Chapters/Application/Fig/}, {Chapters/Asymptotic_svs/Fig/}}
+
+
+%------------------------Page set-up-----------------------------------------
+%\renewcommand{\baselinestretch}{1.5}
+\setlength{\hoffset}{-1in}
+\setlength{\oddsidemargin}{4cm}
+\setlength{\evensidemargin}{2cm}
+\setlength{\voffset}{3cm - 1in}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{15pt}
+%\setlength{\headsep}{0cm}
+%changed to try to get marginpar/ marginnote to work
+\setlength{\marginparwidth}{2cm}
+\setlength{\marginparsep}{0.1cm}
+\setlength{\marginparpush}{0cm}
+%\setlength{\footskip}{0cm}
+\setlength{\textheight}{242mm - \headheight - \headsep - \footskip}
+\setlength{\textwidth}{15cm}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.75\baselineskip}
+
+%------------------------------------------------------------------------------
+
+%------------------------Setup headings and spacing---------------------
+\makeatletter
+\renewcommand{\section}{\@startsection%
+  {section}% name
+  {1}% level
+  {0mm}% indent
+  {0.5\baselineskip}% beforeskip
+  {0.1mm}% afterskip
+  {\sectionfont\Large\bfseries}% style
+}
+\renewcommand{\subsection}{\@startsection%
+  {subsection}% name
+  {2}% level
+  {0mm}% indent
+  {0.5\baselineskip}% beforeskip
+  {0.1mm}% afterskip
+  {\sectionfont\large\bfseries}% style
+}
+\makeatother
+%------------------------------------------------------------------------------
+
+%------------------------Fancy headings-----------------------------------
+%\pagestyle{fancyplain}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
+%\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+%------------------------------------------------------------------------------
+
+% Modify the first page of the chapters: no chapter word, big chapter
+% number, title adjusted to right, and a line below.
+%-----------------------------------------------------------------------
+\makeatletter
+\def\@makechapterhead#1{%
+  {\parindent \z@\raggedleft
+    \ifnum \c@secnumdepth >\m@ne
+    %{\fontsize{20pt}{30pt}\selectfont\Huge\textsc{\textbf{\thechapter}}}
+    {\sectionfont\Huge{\thechapter}}
+    \fi
+    \rule{\columnwidth}{0pt} \par
+    {\sectionfont\Huge\textsc{#1}\par}
+    \nobreak
+    \vskip 70\p@
+    }}
+\def\@makeschapterhead#1{%
+  {\parindent\z@\raggedleft
+    {\sectionfont\Huge\textsc{#1}\par}
+    \nobreak
+    \vskip 70\p@
+    }}
+\makeatother
+%-----------------------------------------------------------------------
+
+% Modify the caption definition to make text italic and smaller than normalsize text
+%-----------------------------------------------------------------------
+\makeatletter
+\newsavebox{\capbox}
+\renewcommand{\@makecaption}[2]{%
+  \vspace{0pt}\sbox{\capbox}{\textsf{\textbf{#1}}: \textsf{\small{#2}}}%
+  \ifthenelse{\lengthtest{\wd\capbox > 0.8\linewidth}}%
+    {\center{\parbox[t]{0.8\linewidth}{\textsf{\textbf{#1}}: \textsf{\small{#2}}}}}%
+    {\begin{center}\textsf{\textbf{#1}}: \textsf{\small{#2}}\end{center}}%
+  } \makeatother
+%-----------------------------------------------------------------------
+
+% Pages and Fancyheadings stuff
+%-----------------------------------------------------------------------
+\pagestyle{fancy}
+% \pagestyle{fancyplain}
+%\setlength{\headrulewidth}{0.1pt} \setlength{\footrulewidth}{0pt}
+\newcommand{\clearemptydoublepage}{\newpage\thispagestyle{empty}\cleardoublepage}
+\cfoot{}
+% Chapter
+\renewcommand{\chaptermark}[1]{\markboth{\sectionfont\thechapter.\ #1}{}}
+% % Section
+\renewcommand{\sectionmark}[1]{\markright{\sectionfont\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\nouppercase{\bfseries\rightmark}}
+\fancyhead[RE]{\nouppercase{\scshape\leftmark}}
+% \lhead[\fancyplain{}{\bf\thepage}]{\fancyplain{}{\bf\rightmark}}
+% \rhead[\fancyplain{}{\bf\leftmark}]{\fancyplain{}{\bf\thepage}}
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+%-----------------------------------------------------------------------
+
+%---------------------------New Commands-------------------------------
+\newcommand{\nc}{\newcommand}
+\nc{\nenv}{\newenvironment}
+\nc{\optprobmin}[8]{%
+                                %\begin{equation*}%
+  \ifthenelse{#1 > 0}{%
+    \begin{alignedat}{3}%
+      ({\cal #2}_{#3}):\qquad\qquad%
+      \underset{#4}{\textnormal{min}}&&\quad&#5\\%
+      \textnormal{s.t.}&&\quad%
+      \ifthenelse{#1 = 3}{&#6\\&&&#7\\&&&#8}{}%
+      \ifthenelse{#1 = 2}{&#6\\&&&#7}{}%
+      \ifthenelse{#1 = 1}{&#6}{}%
+    \end{alignedat}%
+  }{({\cal #2}_{#3}):\qquad\qquad \underset{#4}{\textnormal{min}}\ #5}
+                                %\end{equation*}%
+}
+\nc{\optprobargmin}[9]{%
+                                %\begin{equation*}%
+  \ifthenelse{#1 > 0}{%
+    \begin{alignedat}{3}%
+        ({\cal #2}_{#3}):\qquad\qquad #4 \wideq \textnormal{arg}\,%
+        \underset{#5}{\textnormal{min}}&&\quad&#6\\%
+      \textnormal{s.t.}&&\quad%
+      \ifthenelse{#1 = 3}{&#7\\&&&#8\\&&&#9}{}%
+      \ifthenelse{#1 = 2}{&#7\\&&&#8}{}%
+      \ifthenelse{#1 = 1}{&#7}{}%
+    \end{alignedat}%
+  }{({\cal #2}_{#3}):\qquad\qquad #4 \wideq \textnormal{arg}\,%
+    \underset{#5}{\textnormal{min}}\ #6}
+                                %\end{equation*}%
+}
+\nc{\optprobmax}[8]{%
+  %\begin{equation*}%
+  \begin{alignedat}{3}%
+    ({\cal #2}_{#3}):\qquad\qquad%
+    \underset{#4}{\textnormal{max}}&&\quad&#5\\%
+    \textnormal{s.t.}&&\quad%
+    \ifthenelse{#1 = 3}{&#6\\&&&#7\\&&&#8}{}%
+    \ifthenelse{#1 = 2}{&#6\\&&&#7}{}%
+    \ifthenelse{#1 = 1}{&#6}{}%
+  \end{alignedat}%
+%\end{equation*}%
+}
+\nc{\mbf}{\mathbf}
+\nc{\R}{\Bbb{R}}
+%\nc{\U}{\Bbb{U}}
+\nc{\X}{\Bbb{X}}
+\nc{\intr}[1]{\textnormal{int}#1}
+\nc{\mpart}[2]{\frac{\partial #1}{\partial #2}}
+\nc{\sfrac}[2]{{\textstyle\frac{#1}{#2}}}
+\nc{\mprb}[2][]{\ensuremath{({\cal #2}_{#1})}}
+\nc{\nser}[3]{#1_{#2},\ldots,#1_{#3}}
+\nc{\nserf}[4]{#1(#2_{#3}),\ldots,#1(#2_{#4})}
+\nc{\inprod}[2]{\langle#1,#2\rangle}
+\nc{\ndthm}{\hspace*{\fill} $\scriptstyle{\Box}$}
+\nc{\vndthm}{\vspace{-\baselineskip} \ndthm}
+\nc{\wideq}[1][=]{\ensuremath{\ \ #1\ \ }}
+\nc{\xs}{{\mathscr X}}
+\nc{\us}{{\mathscr U}}
+\nc{\Seq}{\Bbb{S}}
+\nc{\range}[1]{\textnormal{ran}(#1)}
+\nc{\domain}[1]{\textnormal{dom}(#1)}
+\nc{\ind}[1]{\langle #1 \rangle}
+%------------------------------------------------------------------------------
+%
+%---------------------------New Theorems-------------------------------
+% Adrian's definitions for Theorems and the like :
+
+\nc{\nt}{\newtheorem}
+%\nt{theorem}{Theorem}[section]
+%\nt{property}{Property}[section]
+%\nt{remark}{Remark}[section]
+%\nt{lemma}{Lemma}[section]
+\nt{corollary}{Corollary}[section]
+\nt{definition}{Definition}[section]
+%\nt{result}{Result}[section]
+%\nt{example}{Example}[section]
+\nt{observation}{Observation}[section]
+\nt{rr}{Reduction Rule}[section]
+\nt{claim}{Claim}[section]
+%\nt{process}{Process}[section]
+%\nt{proposition}{Proposition}[section]
+%\nt{assumption}{Assumption}[section]
+%\nt{problem}{Problem}[section]
+%\nt{algorithm}{Algorithm}[section]
+\newenvironment{claimproof}[1]
+%{\begin{quote}\emph{Proof of Claim #1.}} {\qed\end{quote}}
+{\begin{quote}\emph{Proof of Claim.}} {\qed\end{quote}}
+\newtheorem{redrule}{Reduction Rule}
+\newenvironment{redruleproof}[1]
+{\begin{quote}\emph{\textbf{Proof of Reduction Rule #1.}}}
+{\qed\end{quote}}
+
+%------------------------------------------------------------------------------
+%
+%---------------------------New Environments-------------------------------
+\def\qed{\ifmmode\hspace*{\fill}\Box\else\unskip\nobreak\hspace*{\fill}$\Box$\fi}
+%\hspace*{\fill} $\Box$
+%\def\qed{\hspace*{\fill} $\Box$}
+\nenv{proof}[0]{\textit{\textbf{Proof. }}}{\hspace*{\fill} $\Box$}
+\nenv{proplist}[1]{\begin{list}{}{%
+      \renewcommand{\makelabel}[1]{(#1.##1)}%
+      \settowidth{\labelwidth}{(#1.2)}%
+      \setlength{\itemindent}{0mm}%
+      \setlength{\labelsep}{5mm}%
+      \setlength{\leftmargin}{2cm}%
+      \setlength{\rightmargin}{5mm}%
+      \setlength{\topsep}{0.5\baselineskip}%
+      \setlength{\parskip}{0mm}%
+      \setlength{\partopsep}{0mm}%
+    }}{\end{list}}
+
+\hyphenpenalty 4000
+\tolerance 1000
+%\XeTeXlinebreaklocale "en_US"
+%\XeTeXlinebreakpenalty 230
+%\XeTeXlinebreakskip=0pt plus 15pt

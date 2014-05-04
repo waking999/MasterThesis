@@ -1,0 +1,7 @@
+
+ beans.xml
+ build.xml
+ root-context.xml
+ servlet-context.xml
+ web.xml
+

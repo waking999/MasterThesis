@@ -1,0 +1,38 @@
+%For for the declaration:
+\thispagestyle{empty}
+%
+\hfill \rule{0cm}{4cm} \parbox{10cm}{
+{\bf STATEMENT OF ORIGINALITY}
+
+The thesis contains no material which has been accepted for the award of any other degree of diploma in any university or other tertiary institution and, to the best of my knowledge and belief, contains no material previously published or written by another person, except where due reference has been made in the text. I give consent to this copy of my thesis, when deposited in the University Library, being made available for loan and photocopying subject to the provisions of the Copyright Act 1968.
+
+I hereby certify that the work embodied in this thesis is the
+result of original research and has not been submitted for a higher degree to any other University
+or Institution.
+
+I hereby certify that parts of the work embodied in this thesis have been done in collaboration with other researchers. I have included as part of the thesis a statement clearly outlining the extent of collaboration, with whom and under what auspices.
+
+I hereby certify that the work embodied in this thesis contains a number of published scholarly work (conference proceedings) of which I am a joint author. I have included a written statement, endorsed by my supervisor, attesting to my contribution of the joint publications/scholarly work.
+
+}
+%
+\vspace{2cm}
+%
+\begin{flushright} Peter E. Shaw \end{flushright}
+%
+\vfill
+%Another Blank Page
+\pagebreak
+%
+\thispagestyle{empty}
+%
+\cleardoublepage
+
+%-------------------------------------------------------------------
+% Final part of each separate tex file
+%-------------------------------------------------------------------
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main.tex"
+%%% End:

@@ -1,0 +1,29 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Master_Thesis_Kai.aux
+A level-1 auxiliary file: Title/title.aux
+A level-1 auxiliary file: Acknowledgements/acknowledgements.aux
+A level-1 auxiliary file: Abstract/abstract.aux
+A level-1 auxiliary file: Chapters/Introduction/introduction.aux
+A level-1 auxiliary file: Chapters/Preliminaries/preliminaries.aux
+I couldn't open auxiliary file Chapters/CertificationSystem/certificationSystem.aux
+---line 32 of file Master_Thesis_Kai.aux
+ : \@input{Chapters/CertificationSystem/certificationSystem.aux
+ :                                                             }
+I'm skipping whatever remains of this command
+I couldn't open auxiliary file Chapters/Algorithms/algorithms.aux
+---line 33 of file Master_Thesis_Kai.aux
+ : \@input{Chapters/Algorithms/algorithms.aux
+ :                                           }
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: Chapters/Conclusion/Conclusion.aux
+A level-1 auxiliary file: Chapters/Appendix/appendix.aux
+The style file: bibtex/IEEEtranSA.bst
+I found no \citation commands---while reading file Master_Thesis_Kai.aux
+Database file #1: IEEEabrv.bib
+Database file #2: biblio1.bib
+-- IEEEtranSA.bst version 1.12 (2007/01/11) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+** Sorting Alpha version - not for normal IEEE work.
+
+Done.
+(There were 3 error messages)

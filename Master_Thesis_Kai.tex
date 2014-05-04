@@ -1,0 +1,94 @@
+%-------------------------------------------------------------------
+%                      >>>>>   Preamble   <<<<<
+% preamble.tex includes all the definitions, packages and so
+% on
+%-------------------------------------------------------------------
+
+\include{./Custom/custom.preamble_xetex}
+
+\newcommand{\instance}{\emph{\textbf{Instance}\hspace{3mm}}}
+\newcommand{\parameter}{\emph{\textbf{Parameter}\hspace{0.5mm}}}
+\newcommand{\ques}{\emph{\textbf{Question}\hspace{2.5mm}}}
+
+% The compactlist environment has \parskip set to the original \parskip
+\makeatletter
+\newcommand*{\compress}{\@minipagetrue}
+\makeatother
+%
+\let\origparskip=\parskip
+%\lineskiplimit=0pt \lineskip=0pt \tolerance=5000
+\newenvironment{compactlist}{\begin{list}{\footnotesize}{\setlength{\parsep}{\origparskip}%
+\setlength{\itemsep}{0pt}}}{\end{list}}
+
+% The problem environment is for formatting things like problem definitions,
+%   with unindented title, followed by hanging indents for instance and question.
+\newenvironment{dproblem}{
+\begin{compactlist}\item[]\hskip-\leftmargin\nopagebreak
+  \ignorespaces}{\end{compactlist}}
+
+%------------------------------------------------------------------------
+% The following are the files you want to compile in this session
+%------------------------------------------------------------------------
+\makeindex
+\includeonly{
+Title/title,%
+Declaration/declaration,%
+Acknowledgements/acknowledgements,
+Abstract/abstract,
+Chapters/Introduction/introduction,
+Chapters/Preliminaries/preliminaries,
+Chapters/Conclusion/Conclusion,
+Chapters/Appendix/appendix,
+bibliography,
+}
+
+
+%------------------------------------------------------------------------
+% Main body of the Thesis
+%------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------
+%\frontmatter
+%\mainmatter
+\include{Title/title}
+\include{Acknowledgements/acknowledgements}
+%\pdfbookmark[1]{Contents}{table}
+\tableofcontents
+\include{Abstract/abstract}
+\listoffigures
+\listoftables
+\clearemptydoublepage
+
+%----------------------------
+\mainmatter
+\edef\marginnotetextwidth{\the\textwidth}
+%\include{Chapters/Important/important}
+\reversemarginpar
+\xdef\marginpartextwidth{\the\textwidth}
+%\raggedleftmarginnote
+\include{Chapters/Introduction/introduction}
+\include{Chapters/Preliminaries/preliminaries}
+\include{Chapters/Conclusion/Conclusion}
+\include{Chapters/Appendix/appendix}
+%----------------------------
+\backmatter
+\printindex
+\renewcommand{\bibname}{Bibliography}	
+\bibliographystyle{bibtex/IEEEtranSA}
+\bibliography{IEEEabrv,biblio1}
+% Recall that >>> osvaldo.bib <<< is actually saved in
+% folder >> Work <<. Only a symbolic link has been placed here.
+\end{document}
+
+
+
+%-------------------------------------------------------------------
+% Final part of main.tex
+%-------------------------------------------------------------------
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

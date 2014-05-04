@@ -1,0 +1,33 @@
+\thispagestyle{empty}
+\begin{flushright}
+  \rule{0cm}{8cm} \emph{\bfseries\Large To my darling wife Eunmee Chang-Shaw whom I love so much.}
+  
+  \begin{quote}
+  Finally, brethren, whatever is true, whatever is honorable, whatever is right, whatever is pure, whatever is lovely, whatever is of good repute, if there is any excellence and if anything worthy of praise, dwell on these things.
+
+ The things you have learned and received and heard and seen in me, practice these things, and the God of peace will be with you.
+God's Provisions
+ But I rejoiced in the Lord greatly, that now at last you have revived your concern for me; indeed, you were concerned before, but you lacked opportunity.
+
+ Not that I speak from want, for I have learned to be content in whatever circumstances I am.
+
+ I know how to get along with humble means, and I also know how to live in prosperity; in any and every circumstance I have learned the secret of being filled and going hungry, both of having abundance and suffering need.
+
+ I can do all things through Him who strengthens me. 
+  \end{quote}
+  
+  {\em Philippians 4:8--3 (New American Standard Bible)}
+\end{flushright}\vfill
+%Another Blank Page
+\pagebreak
+\thispagestyle{empty}
+\cleardoublepage
+
+%-------------------------------------------------------------------
+% Final part of each separate tex file
+%-------------------------------------------------------------------
+
+%%% Local Variables: 
+%%% mode: latex 
+%%% TeX-master: "../main.tex"
+%%% End: 

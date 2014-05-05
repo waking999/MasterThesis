@@ -1,19 +1,23 @@
 \chapter{Preliminaries and Notation} \label{chap:prelim}
 \section{Set Theory} \label{sec:set}
-//TODO: add later 
-$\mathds{N}$  
+//TODO: add later $\mathds{N}$, linear order $>_L$ 
 \section{Graph Theory}  \label{sec:graph}
+//TODO: add later. neighbours, $N_G$$(v)$
 \subsection{Dominating Set}
-//TODO:add later
+//TODO:add later ds , dominated, non-dominated
 \section{Complexity Theory} \label{sec:complex}
 \subsection{Decision Problems} \label{subsec:decision}
 \subsection{NP,NP-Hard, NP-complete}
 //TODO:add later
 \subsection{Growth Rate of Function} \label{subsec:growth}
 \subsection{Fixed Parameter Tractability} \label{subsec:fpt}
+//TODO: add later
 \subsection{W-Hierarchy} \label{subsec:whierarchy}
 //TODO:add later
 \subsection{Kernelization} \label{subsec:kern}
+\section{Reduction Rules} \label{sec:reduce}
+\subsubsection{An improved ${FPT}$ Algorithm for Vertex Cover} \label{subsubsec:fptvc}
+\subsubsection{Crown Reduction Rule} \label{subsubsec:crown}
 \subsection{\large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}} \label{subsec:comds}
 Dominating set is one of natural properties of graphs, while \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem is one of complex problems studied in complexity theory. \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem is categorized in $NP-complete$ class \cite{garey1979}.
 \begin{dproblem}
@@ -37,8 +41,8 @@ With the assistance of the Hamming distance of $d_e$$(G,G')$ and $d_H$$(S,S')$, 
 \begin{dproblem}
 {\sc \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM} (\large{I}\normalsize{NC}-\large{P}\normalsize{ROBLEM})}\\
 \instance A graph $G=(V,E)$ and a set $S \subseteq V$ where $S$ has a certain property  $P$ for $G$,\\
-\quad \quad A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
-\quad \quad $k,r \in \mathds{N}$ \\
+  A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
+  $k,r \in \mathds{N}$ \\
 \parameter $(k,r)$ \\
 \ques Is there a set $S' \subseteq V$ such that $S'$ has property  $P$ for $G'$ and $d_H$$(S,S') \leqslant r$\\
 \cite{downey2014}
@@ -47,12 +51,17 @@ With regards to the property of dominating set of graph, the definition of \larg
 \begin{dproblem}
 {\sc \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} \large{(}\large{I}\normalsize{NC}-\large{DS}\large{)}}\\
 \instance A graph $G=(V,E)$ and a dominating set $S \subseteq V$ for $G$,\\
-\qquad   A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
-\quad \quad $k,r \in \mathds{N}$ \\
-\parameter \quad $(k,r)$ \\
-\ques \quad Is there a dominating set $S' \subseteq V$ such that $d_H$$(S,S') \leqslant r$\\
+  A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
+  $k,r \in \mathds{N}$ \\
+\parameter $ (k,r)$ \\
+\ques  Is there a dominating set $S' \subseteq V$ such that $d_H$$(S,S') \leqslant r$\\
 \cite{downey2014}
 \end{dproblem}
-\section{Reduction Rules} \label{sec:reduce}
-\subsubsection{An improved ${FPT}$ Algorithm for Vertex Cover} \label{subsubsec:fptvc}
-\subsubsection{Crown Reduction Rule} \label{subsubsec:crown}
+\subsection{Harmness in \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET}} \label{subsec:harmincds}
+We have already known graph $G'$ is obtained from $G$ by a series of edge edit operations. If a certain edge edit operation results in a non-dominated vertex in $G'$, we say that such edge edit operation does $harm$ the vertex solution set $S$ for $G$ \cite{downey2014}.  Conversely, we can say some edge edit operations do not harm $S$ if no non-dominated vertex is introduced. Edge addition, for instance, will not harm $S$. In another words, edge deletion is likely to harm $S$. We will discuss which kind of edge deletion can be $harmful$.
+\\
+\\
+\begin{defn} \textbf{H-edit} \cite{downey2014} Given an instance $(G,G',S,k,r)$ of \large{I}\normalsize{NC}-\large{DS}, $v$ is a non-dominated vertex in $G'$. Let $U=N_G$$(v)\cap S$. There is a linear order $>_L$ on $U$ and $u_m$ is the greatest vertex in $U$ under $>_L$. The deletion of edge $(u_m,v)$ in the transition from $G$ to $G'$ is called $H-edit$.
+\end{defn}
+Since $v$ is a non-dominated vertex in $G'$, $v \notin S$ in $G$. In another words, at least one of $v$'s neighbours is in $S$, which can be expressed as $U=N_G$$(v)\cap S=\{u_1,u_2,\cdots,u_m\}$. Obviously, as long as one edge between $v$ and one of its neighbours exists, $v$ will not be a non-dominated vertex in $G'$. Under the linear order $>_L$, the greatest element $u_m$ ensures that any deletion of edge ($u_i$,$v$) will not harm $S$ when $i\neq m$. It proves that an edge edit operation harms $S$ if and only if it is an H-edit \cite{downey2014}.
+

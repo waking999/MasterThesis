@@ -1,12 +1,58 @@
 \chapter{Preliminaries and Notation} \label{chap:prelim}
 \section{Set Theory} \label{sec:set}
+//TODO: add later 
+$\mathds{N}$  
 \section{Graph Theory}  \label{sec:graph}
+\subsection{Dominating Set}
+//TODO:add later
 \section{Complexity Theory} \label{sec:complex}
 \subsection{Decision Problems} \label{subsec:decision}
+\subsection{NP,NP-Hard, NP-complete}
+//TODO:add later
 \subsection{Growth Rate of Function} \label{subsec:growth}
 \subsection{Fixed Parameter Tractability} \label{subsec:fpt}
 \subsection{W-Hierarchy} \label{subsec:whierarchy}
+//TODO:add later
 \subsection{Kernelization} \label{subsec:kern}
+\subsection{\large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}} \label{subsec:comds}
+Dominating set is one of natural properties of graphs, while \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem is one of complex problems studied in complexity theory. \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem is categorized in $NP-complete$ class \cite{garey1979}.
+\begin{dproblem}
+{\sc \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}}\\
+\instance A graph $G=(V,E)$ and $k \in \mathds{N}$.\\
+\ques Is there a dominating set $D \subseteq V$ for $G$ such that $|D| \leqslant k$?\\
+\cite{garey1979}
+\end{dproblem}
+
+\vskip -20pt
+\large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} has been proved to be a $W[2]-complete$ problem by Downey and Fellows in 1995 \cite{downey1995}. In another words, this problem is not a $FPT$ problem and does not have kernel. Nevertheless, the incremental edition of this problem, $\large{I}\normalsize{NCREEMENTAL}\quad \large{D}\normalsize{OMINATING}\quad \Large{S}\normalsize{ET}$ problem, can be classified as a $FPT$ problem \cite{downey2014}.
+\\
+\\
+\subsection{Hamming Distance}
+Before talking about the \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem, we need clarify some concepts to help us understand the increment problem.
+\\
+\\
+Assuming there are two vectors with the same length, we can check if the symbols in the corresponding positions of the two vectors are same or different. We call the number of positions where the symbols are different as $Hamming\quad Distance$ \cite{hamming1950error}. Obviously, this technique can be applied in graphs. Firstly, given two graphs $G=(V,E)$ and $G'=(V,E')$, both have the same set of vertices but different set of edges. We say that set $E'$ is obtained by a series of $edge\quad edit\quad operations$ from $E$, which refers to edge deletion and edge addition. Secondly, we can establish two 0/1 vectors to indicate $E$ and $E'$. Thirdly, we can find the Hamming distance between $E$ and $E'$, which is denoted by $d_e$$(G,G')$. We call $d_e$$(G,G')$ as $edge\quad edit\quad distance$. In the fourth step, if there exists a solution of vertex set $S \subset V$ for graph $G$ and there may or may not exist another solution $S' \subset V$ for $G'$ with respect to a certain graph problem, we can also establish two 0/1 vectors to indicate $S$ and $S'$. Finally, we can define the Hamming distance $d_H$$(S,S')$ as the $vertex\quad solution\quad set\quad distance$ \cite{downey2014}.
+\subsection{\large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}}\label{subsec:incds}
+With the assistance of the Hamming distance of $d_e$$(G,G')$ and $d_H$$(S,S')$, we can define \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM}.
+\begin{dproblem}
+{\sc \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM} (\large{I}\normalsize{NC}-\large{P}\normalsize{ROBLEM})}\\
+\instance A graph $G=(V,E)$ and a set $S \subseteq V$ where $S$ has a certain property  $P$ for $G$,\\
+\quad \quad A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
+\quad \quad $k,r \in \mathds{N}$ \\
+\parameter $(k,r)$ \\
+\ques Is there a set $S' \subseteq V$ such that $S'$ has property  $P$ for $G'$ and $d_H$$(S,S') \leqslant r$\\
+\cite{downey2014}
+\end{dproblem}
+With regards to the property of dominating set of graph, the definition of \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} problem can be presented in the following form:
+\begin{dproblem}
+{\sc \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} \large{(}\large{I}\normalsize{NC}-\large{DS}\large{)}}\\
+\instance A graph $G=(V,E)$ and a dominating set $S \subseteq V$ for $G$,\\
+\qquad   A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
+\quad \quad $k,r \in \mathds{N}$ \\
+\parameter \quad $(k,r)$ \\
+\ques \quad Is there a dominating set $S' \subseteq V$ such that $d_H$$(S,S') \leqslant r$\\
+\cite{downey2014}
+\end{dproblem}
 \section{Reduction Rules} \label{sec:reduce}
 \subsubsection{An improved ${FPT}$ Algorithm for Vertex Cover} \label{subsubsec:fptvc}
 \subsubsection{Crown Reduction Rule} \label{subsubsec:crown}

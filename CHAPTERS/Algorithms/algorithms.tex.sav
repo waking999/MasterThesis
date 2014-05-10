@@ -1,0 +1,75 @@
+%=============================================================
+\chapter{Algorthms}\label{chap:alg}
+\section{Greedy} \label{sec:greedy}
+\section{Heuristic} \label{sec:heuristic}
+\subsection{Hill Climbing} \label{subsec:hillclimbing}
+\subsection{Local Search} \label{subsec:localsearch}
+\subsection{Stimulated Annealing} \label{subsec:stmanl}
+\subsection{Ant Colony Optimization (ACO)} \label{subsec:aco} 
+\section{Algorithms for Vertex Cover}
+\subsection{An improved ${FPT}$ Algorithm for Vertex Cover} \label{subsec:fptvc}
+
+\section{\large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}} \label{sec:set}
+\subsection{Hamming Distance}
+Before talking about the \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem, we need clarify some concepts to help us understand the increment problem.
+\\
+\\
+Assuming there are two vectors with the same length, we can check if the symbols in the corresponding positions of the two vectors are same or different. We call the number of positions where the symbols are different as $Hamming\quad Distance$ \cite{hamming1950error}. Obviously, this technique can be applied in graphs. Firstly, given two graphs $G=(V,E)$ and $G'=(V,E')$, both have the same set of vertices but different set of edges. We say that set $E'$ is obtained by a series of $edge\quad edit\quad operations$ from $E$, which refers to edge deletion and edge addition. Secondly, we can establish two 0/1 vectors to indicate $E$ and $E'$. Thirdly, we can find the Hamming distance between $E$ and $E'$, which is denoted by $d_e$$(G,G')$. We call $d_e$$(G,G')$ as $edge\quad edit\quad distance$. In the fourth step, if there exists a solution of vertex set $S \subset V$ for graph $G$ and there may or may not exist another solution $S' \subset V$ for $G'$ with respect to a certain graph problem, we can also establish two 0/1 vectors to indicate $S$ and $S'$. Finally, we can define the Hamming distance $d_H$$(S,S')$ as the $vertex\quad solution\quad set\quad distance$ \cite{downey2014}.
+\subsection{\large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}}\label{subsec:incds}
+With the assistance of the Hamming distance of $d_e$$(G,G')$ and $d_H$$(S,S')$, we can define \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM}.
+\begin{dproblem}
+{\sc \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM} (\large{I}\normalsize{NC}-\large{P}\normalsize{ROBLEM})}\\
+\instance A graph $G=(V,E)$ and a set $S \subseteq V$ where $S$ has a certain property  $P$ for $G$,\\
+  A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
+  $k,r \in \mathds{N}$ \\
+\parameter $(k,r)$ \\
+\ques Is there a set $S' \subseteq V$ such that $S'$ has property  $P$ for $G'$ and $d_H$$(S,S') \leqslant r$\\
+\cite{downey2014}
+\end{dproblem}
+With regards to the property of dominating set of graph, the definition of \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} problem can be presented in the following form:
+\begin{dproblem}
+{\sc \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} \large{(}\large{I}\normalsize{NC}-\large{DS}\large{)}}\\
+\instance A graph $G=(V,E)$ and a dominating set $S \subseteq V$ for $G$,\\
+  A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
+  $k,r \in \mathds{N}$ \\
+\parameter $ (k,r)$ \\
+\ques  Is there a dominating set $S' \subseteq V$ such that $d_H$$(S,S') \leqslant r$\\
+\cite{downey2014}
+\end{dproblem}
+There is another problem relevant to \large{I}\normalsize{NC}-\large{DS}, \normalsize{we also present it in the following form:}
+\begin{dproblem}
+{\sc \large{D}\normalsize{OMINATING} \large{A} \large{V}\normalsize{ERTEX}  \Large{C}\normalsize{OVER} \large{(}\large{D}\normalsize{OM}-\large{A}-\large{VC}\large{)}}\\
+\instance A graph $G=(V,E)$ and a vertex cover $C \subseteq V$ for $G$,\\
+   $r \leqslant k, r,k \in \mathds{N}$ \\
+\parameter $ (k,r)$ \\
+\ques  Is there a set $D \subseteq V$ such that $\abs{D} \leqslant r$ and $D$ dominates the vertex cover $C$?\\
+\cite{downey2014}
+\end{dproblem}
+\subsection{Harmness in \large{I}\normalsize{NC}-\large{DS}} \label{subsec:harmincds}
+We have already known graph $G'$ is obtained from $G$ by a series of edge edit operations. If a certain edge edit operation results in a non-dominated vertex in $G'$, we say that such edge edit operation does $harm$ the vertex solution set $S$ for $G$ \cite{downey2014}.  Conversely, we can say some edge edit operations do not harm $S$ if no non-dominated vertex is introduced. Edge addition, for instance, will not harm $S$. In another words, edge deletion is likely to harm $S$. We will discuss which kind of edge deletion can be $harmful$.
+\\
+\\
+\begin{defn} \textbf{H-edit} \cite{downey2014} Given an instance $(G,G',S,k,r)$ of \large{I}\normalsize{NC}-\large{DS}, $v$ is a non-dominated vertex in $G'$. Let $U=N_G$$(v)\cap S$. There is a linear order $>_L$ on $U$ and $u_m$ is the greatest vertex in $U$ under $>_L$. The deletion of edge $(u_m,v)$ in the transition from $G$ to $G'$ is called $H-edit$.
+\end{defn}
+Since $v$ is a non-dominated vertex in $G'$, $v \notin S$ in $G$. In another words, at least one of $v$'s neighbours is in $S$, which can be expressed as $U=N_G$$(v)\cap S=\{u_1,u_2,\cdots,u_m\}$. Obviously, as long as one edge between $v$ and one of its neighbours exists, $v$ will not be a non-dominated vertex in $G'$. Under the linear order $>_L$, the greatest element $u_m$ ensures that any deletion of edge ($u_i$,$v$) will not harm $S$ when $i\neq m$. It proves that an edge edit operation harms $S$ if and only if it is an H-edit \cite{downey2014}.
+\subsection{Reduction Rules for \large{I}\normalsize{NC}-\large{DS}}
+Let $h\leqslant k$ be the number of harmful edge edit operations in the transition from $G$ to $G'$, the remaining $k-h$ edge edit operations will not harm $S$. In another words, we can construct an instance $I^{*} = (G^{*}, G', h, r)$ from $I = (G, G', k, r)$ via $k-h$ harmless edge edit operations. Obviously, if $I$ is a $Yes-Instance$ if and only if $I^{*}$ is a $Yes-Instance$ \cite{downey2014}.
+\\
+\\
+\begin{lem}
+\label{lem:incds2dvc}
+For a given instance $(I,(k,r)$ of the problem \large{I}\normalsize{NC}-\large{DS}$(k,r))$ \normalsize{}, there is a parameterized reduction to an instance $(I',(k,r))$ of \large{D}\normalsize{OM}-\large{A}-\large{VC} \normalsize{}, such that $\abs{I'} \leqslant \abs{I}$.
+\cite{downey2014}
+\end{lem}
+Let $I = (G, G',S, k, r)$ be an instance of large{I}\normalsize{NC}-\large{DS}$(k,r)$ \normalsize{}. Let $C=V(G')\N_{G'}[S]$ and $B=N_{G'}(S)$. The sets $C, B$ and $S$ form a partition of the vertices of $G'$. Since there are $h \leqslant k$ harmful edge edit operations when transforming $G$ to $G'$, $\abs{C}=h\leqslant k$, which also implies that the vertices in $C$ are only dominated by vertices in $B$ or $C$. We can apply some reduction rules to graph $G'$.
+\begin{itemize}
+  \item \textbf{Reduction Rule 1}: If $v \in S$, remove $v$ and its incident edges;
+  \item \textbf{Reduction Rule 2}: If $v \in B$ and $N(v) \cap C = \emptyset$, remove $v$ and its incident edges;
+  \item \textbf{Reduction Rule 3}: If $(u,v)$ is an edge and ${u, v} \subseteq B$, remove the edge $(u,v)$;
+\end{itemize}
+\cite{downey2014}
+\\
+\\
+After applying the reduction rules, we can find that the remains of $B$ is an independent set in the new obtained graph $H$. In another words, $C$ is a vertex cover for $H$. An instance $(I,(k,r))$ of the problem \large{I}\normalsize{NC}-\large{DS}$(k,r)$  \normalsize{} is reduced to an instance $(I',(k,r))$ of \large{D}\normalsize{OM}-\large{A}-\large{VC} \normalsize{}. If $I'$ is a $Yes-Instance$, there exists a set $D$ dominating $C$, whose size $\leqslant r$. Thus,there exists a dominating set $S'=S \cup D$ with $d_{H}(S,S') \leqslant r$ in $G'$, or we can say $I$ is a $Yes-Instance$. On the contrary, if $I$ is a $Yes-Instance$, which suggests that there is a dominating set $S'$ with $d_{H}(S,S') \leqslant r$ in $G'$, we can find a set of vertices $D= S' \ S$ to dominate the vertices in $C$. In another words, $I'$ is a $Yes-Instance$. In summary, $I$ is a $Yes-Instance$ if and only if $I'$ is a $Yes-Instance$.
+\\
+\\

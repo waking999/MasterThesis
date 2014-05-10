@@ -205,7 +205,7 @@ showstringspaces=false,
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}[thm]{Corollary}
-%\newtheorem{lem}[thm]{Lemma}
+\newtheorem{lem}[thm]{Lemma}
 \newtheorem{fact}[thm]{Fact}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{assu}{Assumption}
@@ -480,6 +480,7 @@ showstringspaces=false,
 %\nt{algorithm}{Algorithm}[section]
 \newenvironment{claimproof}[1]
 {\begin{quote}\emph{Proof of Claim #1.}} {\qed\end{quote}}
+
 \newtheorem{redrule}{Reduction Rule}
 \newenvironment{redruleproof}[1]
 {\begin{quote}\emph{\textbf{Proof of Reduction Rule #1.}}}
@@ -509,3 +510,27 @@ showstringspaces=false,
 %\XeTeXlinebreaklocale "en_US"
 %\XeTeXlinebreakpenalty 230
 %\XeTeXlinebreakskip=0pt plus 15pt
+
+
+% new command added specifically for the thesis
+\newcommand{\instance}{\emph{\textbf{Instance}\hspace{3mm}}}
+\newcommand{\parameter}{\emph{\textbf{Parameter}\hspace{0.5mm}}}
+\newcommand{\ques}{\emph{\textbf{Question}\hspace{2.5mm}}}
+
+% The compactlist environment has \parskip set to the original \parskip
+\makeatletter
+\newcommand*{\compress}{\@minipagetrue}
+\makeatother
+%
+\let\origparskip=\parskip
+%\lineskiplimit=0pt \lineskip=0pt \tolerance=5000
+\newenvironment{compactlist}{\begin{list}{\footnotesize}{\setlength{\parsep}{\origparskip}%
+\setlength{\itemsep}{0pt}}}{\end{list}}
+
+% The problem environment is for formatting things like problem definitions,
+%   with unindented title, followed by hanging indents for instance and question.
+\newenvironment{dproblem}{
+\begin{compactlist}\item[]\hskip-\leftmargin\nopagebreak
+\ignorespaces}{\end{compactlist}}
+
+\newcommand\abs[1]{\left| #1 \right|}

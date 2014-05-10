@@ -1,6 +1,6 @@
 \chapter{Preliminaries and Notation} \label{chap:prelim}
 \section{Set Theory} \label{sec:set}
-//TODO: add later $\mathds{N}$, linear order $>_L$ 
+//TODO: add later $\mathds{N}$, linear order $>_L$
 \section{Graph Theory}  \label{sec:graph}
 //TODO: add later. neighbours, $N_G$$(v)$
 \subsection{Dominating Set}
@@ -16,9 +16,8 @@
 //TODO:add later
 \subsection{Kernelization} \label{subsec:kern}
 \section{Reduction Rules} \label{sec:reduce}
-\subsubsection{An improved ${FPT}$ Algorithm for Vertex Cover} \label{subsubsec:fptvc}
-\subsubsection{Crown Reduction Rule} \label{subsubsec:crown}
-\subsection{\large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}} \label{subsec:comds}
+\subsection{Crown Reduction Rule} \label{subsubsec:crown}
+\section{\large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}} \label{subsec:comds}
 Dominating set is one of natural properties of graphs, while \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem is one of complex problems studied in complexity theory. \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem is categorized in $NP-complete$ class \cite{garey1979}.
 \begin{dproblem}
 {\sc \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}}\\
@@ -31,37 +30,6 @@ Dominating set is one of natural properties of graphs, while \large{D}\normalsiz
 \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} has been proved to be a $W[2]-complete$ problem by Downey and Fellows in 1995 \cite{downey1995}. In another words, this problem is not a $FPT$ problem and does not have kernel. Nevertheless, the incremental edition of this problem, $\large{I}\normalsize{NCREEMENTAL}\quad \large{D}\normalsize{OMINATING}\quad \Large{S}\normalsize{ET}$ problem, can be classified as a $FPT$ problem \cite{downey2014}.
 \\
 \\
-\subsection{Hamming Distance}
-Before talking about the \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET} problem, we need clarify some concepts to help us understand the increment problem.
-\\
-\\
-Assuming there are two vectors with the same length, we can check if the symbols in the corresponding positions of the two vectors are same or different. We call the number of positions where the symbols are different as $Hamming\quad Distance$ \cite{hamming1950error}. Obviously, this technique can be applied in graphs. Firstly, given two graphs $G=(V,E)$ and $G'=(V,E')$, both have the same set of vertices but different set of edges. We say that set $E'$ is obtained by a series of $edge\quad edit\quad operations$ from $E$, which refers to edge deletion and edge addition. Secondly, we can establish two 0/1 vectors to indicate $E$ and $E'$. Thirdly, we can find the Hamming distance between $E$ and $E'$, which is denoted by $d_e$$(G,G')$. We call $d_e$$(G,G')$ as $edge\quad edit\quad distance$. In the fourth step, if there exists a solution of vertex set $S \subset V$ for graph $G$ and there may or may not exist another solution $S' \subset V$ for $G'$ with respect to a certain graph problem, we can also establish two 0/1 vectors to indicate $S$ and $S'$. Finally, we can define the Hamming distance $d_H$$(S,S')$ as the $vertex\quad solution\quad set\quad distance$ \cite{downey2014}.
-\subsection{\large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING} \Large{S}\normalsize{ET}}\label{subsec:incds}
-With the assistance of the Hamming distance of $d_e$$(G,G')$ and $d_H$$(S,S')$, we can define \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM}.
-\begin{dproblem}
-{\sc \large{I}\normalsize{NCREEMENTAL} \large{P}\normalsize{ROBLEM} (\large{I}\normalsize{NC}-\large{P}\normalsize{ROBLEM})}\\
-\instance A graph $G=(V,E)$ and a set $S \subseteq V$ where $S$ has a certain property  $P$ for $G$,\\
-  A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
-  $k,r \in \mathds{N}$ \\
-\parameter $(k,r)$ \\
-\ques Is there a set $S' \subseteq V$ such that $S'$ has property  $P$ for $G'$ and $d_H$$(S,S') \leqslant r$\\
-\cite{downey2014}
-\end{dproblem}
-With regards to the property of dominating set of graph, the definition of \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} problem can be presented in the following form:
-\begin{dproblem}
-{\sc \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET} \large{(}\large{I}\normalsize{NC}-\large{DS}\large{)}}\\
-\instance A graph $G=(V,E)$ and a dominating set $S \subseteq V$ for $G$,\\
-  A graph $G'=(V,E')$ with $d_e$$(G,G') \leqslant k$ , \\
-  $k,r \in \mathds{N}$ \\
-\parameter $ (k,r)$ \\
-\ques  Is there a dominating set $S' \subseteq V$ such that $d_H$$(S,S') \leqslant r$\\
-\cite{downey2014}
-\end{dproblem}
-\subsection{Harmness in \large{I}\normalsize{NCREEMENTAL} \large{D}\normalsize{OMINATING}  \Large{S}\normalsize{ET}} \label{subsec:harmincds}
-We have already known graph $G'$ is obtained from $G$ by a series of edge edit operations. If a certain edge edit operation results in a non-dominated vertex in $G'$, we say that such edge edit operation does $harm$ the vertex solution set $S$ for $G$ \cite{downey2014}.  Conversely, we can say some edge edit operations do not harm $S$ if no non-dominated vertex is introduced. Edge addition, for instance, will not harm $S$. In another words, edge deletion is likely to harm $S$. We will discuss which kind of edge deletion can be $harmful$.
-\\
-\\
-\begin{defn} \textbf{H-edit} \cite{downey2014} Given an instance $(G,G',S,k,r)$ of \large{I}\normalsize{NC}-\large{DS}, $v$ is a non-dominated vertex in $G'$. Let $U=N_G$$(v)\cap S$. There is a linear order $>_L$ on $U$ and $u_m$ is the greatest vertex in $U$ under $>_L$. The deletion of edge $(u_m,v)$ in the transition from $G$ to $G'$ is called $H-edit$.
-\end{defn}
-Since $v$ is a non-dominated vertex in $G'$, $v \notin S$ in $G$. In another words, at least one of $v$'s neighbours is in $S$, which can be expressed as $U=N_G$$(v)\cap S=\{u_1,u_2,\cdots,u_m\}$. Obviously, as long as one edge between $v$ and one of its neighbours exists, $v$ will not be a non-dominated vertex in $G'$. Under the linear order $>_L$, the greatest element $u_m$ ensures that any deletion of edge ($u_i$,$v$) will not harm $S$ when $i\neq m$. It proves that an edge edit operation harms $S$ if and only if it is an H-edit \cite{downey2014}.
+
+
 

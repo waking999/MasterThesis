@@ -6,25 +6,7 @@
 
 \include{./Custom/custom.preamble_xetex}
 
-\newcommand{\instance}{\emph{\textbf{Instance}\hspace{3mm}}}
-\newcommand{\parameter}{\emph{\textbf{Parameter}\hspace{0.5mm}}}
-\newcommand{\ques}{\emph{\textbf{Question}\hspace{2.5mm}}}
 
-% The compactlist environment has \parskip set to the original \parskip
-\makeatletter
-\newcommand*{\compress}{\@minipagetrue}
-\makeatother
-%
-\let\origparskip=\parskip
-%\lineskiplimit=0pt \lineskip=0pt \tolerance=5000
-\newenvironment{compactlist}{\begin{list}{\footnotesize}{\setlength{\parsep}{\origparskip}%
-\setlength{\itemsep}{0pt}}}{\end{list}}
-
-% The problem environment is for formatting things like problem definitions,
-%   with unindented title, followed by hanging indents for instance and question.
-\newenvironment{dproblem}{
-\begin{compactlist}\item[]\hskip-\leftmargin\nopagebreak
-\ignorespaces}{\end{compactlist}}
 
 %------------------------------------------------------------------------
 % The following are the files you want to compile in this session
@@ -37,7 +19,8 @@ Acknowledgements/acknowledgements,
 Abstract/abstract,
 Chapters/Introduction/introduction,
 Chapters/Preliminaries/preliminaries,
-Chapters/Conclusion/Conclusion,
+Chapters/Algorithms/algorithms,
+Chapters/Conclusion/conclusion,
 Chapters/Appendix/appendix,
 bibliography,
 }
@@ -70,7 +53,8 @@ bibliography,
 %\raggedleftmarginnote
 \include{Chapters/Introduction/introduction}
 \include{Chapters/Preliminaries/preliminaries}
-\include{Chapters/Conclusion/Conclusion}
+\include{Chapters/Algorithms/algorithms}
+\include{Chapters/Conclusion/conclusion}
 \include{Chapters/Appendix/appendix}
 %----------------------------
 \backmatter
